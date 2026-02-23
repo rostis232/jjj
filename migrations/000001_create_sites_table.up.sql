@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS sites (
+    id SERIAL PRIMARY KEY,
+    domain TEXT UNIQUE NOT NULL,
+    custom_text TEXT NOT NULL
+);

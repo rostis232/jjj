@@ -1,0 +1,45 @@
+media:
+  input: static/uploads
+  output: /uploads
+
+content:
+  - name: posts
+    label: Posts
+    type: collection
+    path: content/posts
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      fields: [title, date, draft]
+      primary: title
+      sort: [date, title]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: date, label: Date, type: date, required: true }
+      - { name: draft, label: Draft, type: boolean, default: true }
+      - { name: description, label: Description, type: text }
+      - { name: tags, label: Tags, type: string, list: true }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: pages
+    label: Pages
+    type: collection
+    path: content
+    include:
+      - about.md
+      - contact.md
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: description, label: Description, type: text }
+      - { name: body, label: Body, type: rich-text }
+
+  - name: settings
+    label: Site settings
+    type: file
+    path: data/settings.yml
+    fields:
+      - { name: site_title, label: Site title, type: string, required: true }
+      - { name: site_description, label: Site description, type: text }
+      - { name: contact_email, label: Contact email, type: string }
